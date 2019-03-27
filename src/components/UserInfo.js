@@ -14,7 +14,8 @@ class UserInfo extends React.Component {
     this.setState({editUser: !this.state.editUser})
   }
 
-  handleSubmit = () => {
+  handleSubmit = (e) => {
+    e && e.preventDefault()
     this.props.updateUserInfo(this.state)
     this.toggleEditUser()
   }
@@ -29,13 +30,13 @@ class UserInfo extends React.Component {
 
     return (editUser ? 
       <Cointainer>
-        <Form>
+        <Form onSubmit={()=>this.handleSubmit()}>
           <Card style={{border: "4px solid grey"}}>
             <Image src={imageUrl} />
             <Card.Content>
               <Card.Header>
                 <div style={{display: "flex", justifyContent: "flex-start"}}> 
-                <input style={{width: this.state.firstName.length + "ch", fontWeight: "bold", height: "100%", padding: 0, border: "white"}}
+                <input style={{width: (this.state.firstName.length - 0.5) + "ch", fontWeight: "bold", height: "100%", padding: 0, border: "white"}}
                   value={this.state.firstName}
                   onChange={this.handleChange}
                   name="firstName"
