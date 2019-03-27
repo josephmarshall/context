@@ -30,7 +30,7 @@ class UserInfo extends React.Component {
     return (editUser ? 
       <Cointainer>
         <Form>
-          <Card style={{border: "4px solid black"}}>
+          <Card style={{border: "4px solid grey"}}>
             <Image src={imageUrl} />
             <Card.Content>
               <Card.Header>
@@ -39,6 +39,7 @@ class UserInfo extends React.Component {
                   value={this.state.firstName}
                   onChange={this.handleChange}
                   name="firstName"
+                  autoFocus
                   />
                 <input style={{fontWeight: "bold", height: "100%", padding: 0, width: "50%", border: "white"}}
                   value={this.state.lastName}
@@ -50,7 +51,7 @@ class UserInfo extends React.Component {
               <Card.Meta>
                 <div style={{display: "flex"}}>
                 <div>email: </div>
-                <input style={{display: "inline", textAlign: "left", height: "100%", padding: 0, width: "100%", border: "white"}}
+                <input as={Header} style={{all: "unset", display: "inline", textAlign: "left", height: "100%", padding: 0, width: "100%", border: "white"}}
                   value={this.state.email}
                   onChange={this.handleChange}
                   name="email"
@@ -60,7 +61,7 @@ class UserInfo extends React.Component {
               <Card.Description>
                 <div style={{display: "flex"}}>
                 <div style={{whiteSpace: "nowrap"}}>Super Power: </div>
-                <input style={{textAlign: "left", height: "100%", padding: 0, width: "100%", border: "white"}}
+                <input style={{all: "unset", textAlign: "left", height: "100%", padding: 0, width: "100%", border: "white"}}
                   value={this.state.superPower}
                   onChange={this.handleChange}
                   name="superPower"
@@ -74,18 +75,18 @@ class UserInfo extends React.Component {
               22 Friends
               </a>
             </Card.Content>
-            <Button color="black" onClick={()=>this.handleSubmit()}>Submit</Button>
+            <Button style={{color: "grey"}} color="black" inverted onClick={()=>this.handleSubmit()}>Submit</Button>
           </Card>
         </Form>
       </Cointainer>
     :
       <Cointainer>
-        <Card style={{border: "4px solid black"}}>
+        <Card style={{border: "4px solid black", borderRadius: 0}}>
           <Image src={imageUrl} />
-          <Card.Content>
+          <Card.Content onClick={()=>this.toggleEditUser()}>
             <Card.Header>{firstName} {lastName}</Card.Header>
              <Card.Meta>
-              <span className='date'>email: {email}</span>)
+              <span className='date'>email: {email}</span>
             </Card.Meta>
             <Card.Description>Super Power: {superPower}</Card.Description>
           </Card.Content>
@@ -95,7 +96,7 @@ class UserInfo extends React.Component {
             22 Friends
             </a>
           </Card.Content>
-          <Button color="black" onClick={()=>this.toggleEditUser()}>Edit</Button>
+          <Button style={{borderRadius: 0}} color="black" onClick={()=>this.toggleEditUser()}>Edit</Button>
         </Card>
       </Cointainer>
     )
